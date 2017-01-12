@@ -7,7 +7,18 @@ def Binary_Search(arr, to_find):
      returns: index (int), x, s.t. arr[x] == to_find
               None(none-type) if for all x, arr[x] != to_find
   """
-  pass
+  r = len(arr)-1
+  l = 0
+  while l <= r:
+    m = (l+r)/2
+    if arr[m] == to_find:
+        return m
+    elif arr[m] > to_find:
+        r = m-1
+    else:
+        l = m+1
+  return None
+
 
 def Bisection(func, left_side, right_side, tol=1e-5):
   """A direct implementation of Newton's Method
@@ -20,4 +31,16 @@ def Bisection(func, left_side, right_side, tol=1e-5):
      returns: root (float), x, s.t. abs(func(x))<tol
               None(none-type) if func(left_side), func(right_side) < 0 or func(left_side), func(right_side) > 0
   """
-  pass
+  N = 1
+  Nmax = 100
+  while N <= Nmax:
+    c = (left_side+right_side)/2.
+    if func(c) == 0 or (right_side-left_side)/2. < tol:
+        return c
+    N += 1
+    if (func(c)*func(left_side) > 0):
+        left_side = c
+    else:
+        right_side = c
+  return None
+
